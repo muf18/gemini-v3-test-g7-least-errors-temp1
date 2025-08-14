@@ -1,0 +1,56 @@
+# ruff.toml
+# See all configuration options here: https://docs.astral.sh/ruff/configuration/
+
+# Target the oldest supported Python version for compatibility checks.
+target-version = "py310"
+
+# Define the source directories for linting and formatting.
+src = ["src", "tests", "scripts"]
+
+[lint]
+# Enforce a strict set of rules by selecting all rule categories.
+select = [
+    "A", "ANN", "ARG", "B", "C4", "C90", "COM", "D", "DTZ", "E", "W", "EM",
+    "ERA", "F", "G", "I", "ICN", "INP", "ISC", "N", "PERF", "PGH", "PIE",
+    "PL", "PT", "PYI", "Q", "RET", "RSE", "RUF", "S", "SIM", "T20", "TID",
+    "UP", "YTT",
+]
+
+# Ignore specific rules that are either too noisy or conflict with other tools/styles.
+ignore = [
+    "D100",   # Missing docstring in public module
+    "D104",   # Missing docstring in public package
+    "D107",   # Missing docstring in `__init__`
+    "ANN401", # Dynamically-typed expressions (e.g., `Any`) are disallowed
+    "FIX002", # Line contains `TODO`
+    "TD002",  # Missing author in `TODO`
+    "TD003",  # Missing issue link in `TODO`
+    "D203",   # Conflicts with black code formatter
+    "D213",   # Conflicts with black code formatter
+    "COM812", # Handled by the formatter
+    "ISC001", # Handled by the formatter
+    "PLR0913",# Too many arguments
+    "PLR2004",# Magic value used in comparison
+]
+
+[lint.pydocstyle]
+# Use the "google" convention for docstrings, which is common and readable.
+convention = "google"
+
+[format]
+# Use a style compatible with the "black" code formatter.
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+# --- Per-file ignores ---
+[lint.per-file-ignores]
+# In tests, it's standard to use `assert`, so we ignore the S101 rule.
+"tests/**/*.py" = ["S101"]
+# Helper scripts can use `print` for direct user feedback.
+"scripts/**/*.py" = ["T201"]
+# The compile script is a command-line tool, so print is acceptable.
+"proto/compile_proto.py" = ["T201", "S603"]
+# The generated protobuf file will have many style issues; we ignore it completely.
+"src/cryptochart/types/*_pb2.py" = ["ALL"]
