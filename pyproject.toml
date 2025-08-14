@@ -108,6 +108,7 @@ line-ending = "auto"
 "scripts/**/*.py" = ["T201"]
 "proto/compile_proto.py" = ["T201", "S603"]
 "src/cryptochart/types/*_pb2.py" = ["ALL"]
+"src/market_pb2.py" = ["ALL"]
 "src/*_pb2.py" = ["ALL"]
 
 # --- MyPy Type Checker Configuration ---

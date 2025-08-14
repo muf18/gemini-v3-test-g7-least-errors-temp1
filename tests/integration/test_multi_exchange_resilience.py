@@ -33,7 +33,7 @@ class ControllableMockAdapter(ExchangeAdapter):
             try:
                 message = await self._stream_queue.get()
                 yield message
-                self._stream_queue.task_done()
+                self._stream_queue.task_done()  # noqa: PERF203
             except asyncio.CancelledError:  # noqa: PERF203
                 break
         # Simulate a connection loss by exiting the generator

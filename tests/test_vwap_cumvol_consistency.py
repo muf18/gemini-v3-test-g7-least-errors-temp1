@@ -28,7 +28,8 @@ SYNTHETIC_TRADES = [
 def pandas_vwap_calculator(
     trades: list[tuple[int, str, str]], window_seconds: int
 ) -> tuple[Decimal, Decimal]:
-    """Calculate VWAP and cumulative volume for a series of trades using Pandas.
+    """
+    Calculates VWAP and cumulative volume for a series of trades using Pandas.
 
     This serves as the ground truth for our test.
 
@@ -74,10 +75,9 @@ def pandas_vwap_calculator(
 def test_aggregator_consistency_with_pandas(
     timeframe: str, window_seconds: int, mocker: MockerFixture
 ) -> None:
-    """Test that VWAP and cumulative volume match a trusted Pandas calculation.
-
-    This test ensures the SymbolAggregator's output is consistent with a
-    well-established library for a given timeframe.
+    """
+    Tests that the SymbolAggregator's VWAP and cumulative volume match the
+    output of a trusted Pandas-based calculation for a given timeframe.
     """
     # --- Setup ---
     symbol_aggregator = SymbolAggregator("BTC/USD")
