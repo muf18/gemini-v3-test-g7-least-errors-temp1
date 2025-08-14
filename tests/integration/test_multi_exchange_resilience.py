@@ -31,7 +31,7 @@ class ControllableMockAdapter(ExchangeAdapter):
 
     async def _stream_messages(self) -> AsyncGenerator[dict[str, Any], None]:
         while self._is_connected:
-            try:  # noqa: PERF203
+            try:
                 message = await self._stream_queue.get()
                 yield message
                 self._stream_queue.task_done()

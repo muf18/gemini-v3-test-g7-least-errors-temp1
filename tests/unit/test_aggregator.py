@@ -23,7 +23,7 @@ def create_trade(symbol: str, price: str, size: str) -> models_pb2.PriceUpdate:
     )
 
 
-@pytest.fixture()
+@pytest.fixture
 def symbol_aggregator() -> SymbolAggregator:
     """Provides a SymbolAggregator for BTC/USD."""
     return SymbolAggregator("BTC/USD")

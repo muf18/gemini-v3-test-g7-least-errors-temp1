@@ -94,7 +94,7 @@ class SymbolAggregator:
 
             # 2. Purge old trades from the left of the buffer
             while tf_state.buffer and (
-                current_time_ns - tf_state.buffer > window_ns
+                current_time_ns - tf_state.buffer[0][0] > window_ns
             ):
                 _old_ts, old_price, old_size = tf_state.buffer.popleft()
                 tf_state.total_price_volume -= old_price * old_size
