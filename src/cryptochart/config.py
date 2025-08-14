@@ -1,7 +1,7 @@
-import sys
-import tomllib
 from dataclasses import dataclass, field, is_dataclass
 from pathlib import Path
+import sys
+import tomllib
 from typing import Any, ClassVar, TypeVar
 
 import keyring

@@ -11,8 +11,7 @@ from cryptochart.types import models_pb2
 
 
 class ControllableMockAdapter(ExchangeAdapter):
-    """
-    A mock adapter that allows programmatic control over its message stream.
+    """A mock adapter that allows programmatic control over its message stream.
 
     It also controls the connection state for testing resilience.
     """
@@ -35,7 +34,7 @@ class ControllableMockAdapter(ExchangeAdapter):
                 message = await self._stream_queue.get()
                 yield message
                 self._stream_queue.task_done()
-            except asyncio.CancelledError:
+            except asyncio.CancelledError:  # noqa: PERF203
                 break
         # Simulate a connection loss by exiting the generator
         err_msg = f"Connection lost for {self.venue_name}"
@@ -71,8 +70,7 @@ class ControllableMockAdapter(ExchangeAdapter):
 
 @pytest.mark.asyncio
 async def test_aggregator_resilience_to_adapter_disconnection() -> None:
-    """
-    Tests that the aggregator continues to process data from remaining adapters.
+    """Tests that the aggregator continues to process data from remaining adapters.
 
     This is tested for a scenario where one of them disconnects.
     """

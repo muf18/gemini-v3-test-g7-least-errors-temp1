@@ -64,8 +64,7 @@ class LatencyTestAdapter(ExchangeAdapter):
 @pytest.mark.asyncio
 @pytest.mark.timeout(30)  # Set a generous timeout for the entire test
 async def test_end_to_end_latency_under_load() -> None:  # noqa: PLR0915
-    """
-    Measures the p99 latency from adapter output to publisher output.
+    """Measures the p99 latency from adapter output to publisher output.
 
     This is done under a synthetic load of trades.
     """
